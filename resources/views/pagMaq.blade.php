@@ -3,19 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $maquina->nome }}</title>
-    <link rel="stylesheet" href="{{ asset('css/pagTorno.css') }}">
+    <title>Maquinas</title>
+    @vite(['resources/css/pagMaq.css'])
 </head>
-<body>
+<body style="background-image : url('{{ asset('/storage/img/fundo-site.jpeg') }}');">
     <div class="header">
       <h2> Maquinário oficina </h2> 
     </div>
 
     <div class="container">
         <div class="elemento">
-            <h1>{{ $maquina->nome }}</h1>   
-        
-            <img src="{{ asset($maquina->imagem) }}" alt="{{ $maquina->nome }}">
+            <h1>{{ $maquinas->nome }}</h1>  
 
             <h2>Tabela de óleos recomendados:</h2>
             <p>
@@ -40,7 +38,7 @@
                         <td>2 cc/injeção</td>
                         <td>------</td>
                         <td>1 gota/5 ativações</td>
-                    </tr>
+                    </tr>   
                     <tr>
                         <td>Periodo de Abastecimento! Substituição</td>
                         <td>72 horas (max.)</td>
@@ -59,12 +57,12 @@
         </div>
 
         <div class="elemento2">
-            <img src="{{ asset('images/' . $maquina->imagem) }}" width="300px" height="200px">
+            <img src="{{ asset('storage/img/' . $maquinas->imagem) }}" width="300px" height="200px">
         </div>
 
         <div class="formulario">
             <h2>Registro</h2>
-            <form action="{{ route('maquina.registrar', ['id' => $maquina->id]) }}" method="POST">
+            <form  method="POST">
     @csrf
     <input type="text" name="nome" placeholder="Nome" required/><br />
     <input type="text" name="curso" placeholder="Curso" required/><br />

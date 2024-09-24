@@ -2,8 +2,7 @@ h1{
   color: #fff;
 }
 
-body{
-  background-image: url('fundo\ site.jpeg');
+body{ 
   background-repeat:no-repeat;
   background-size: cover;
   margin: 0;

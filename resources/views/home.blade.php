@@ -3,46 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Inicial</title>
+    <title>Pagina inicial</title>
     <link rel="stylesheet" href="style.css">
-    @vite('resources/css/home.css')
+    @vite(['resources/css/style.css'])
 </head>
-<body>
+<body style="background-image : url('{{ asset('/storage/img/fundo-site.jpeg') }}');">
     <div class="header">
-        <h2>Maquinário Oficina</h2> 
+        <h2> Maquinário oficina  </h2> 
+      </div>
+  
+        
     </div>
-
     <center>
-        <h1>Seja bem-vindo!</h1>
+        <h1>Seja bem vindo!</h1>
     </center>
+    </div>
 
     <div class="container">
-    @foreach($maquinas as $maquina)
         <div class="maquina">
-            <img src="{{ asset($maquina->imagem) }}" alt="{{ $maquina->nome }}">
-            <h2>{{ $maquina->nome }}</h2>
-            <button onclick="location.href='{{ route('maquinas.show', $maquina->id) }}'">Utilizar máquina</button>
+            <img src="{{asset('/storage/img/gs200-torno.jpg') }}" alt="Torno gs200">
+            <h2>Torno gs200</h2>
+            <button onclick="AbrirAlertaTorno()">Utilizar maquina</button>
         </div>
-    @endforeach
+
+        <div class="maquina2">
+            <img src="{{asset('/storage/img/ITAP.png')}}" alt="Bomba ITAP">
+            <h2>Bomba ITAP</h2>
+            <button onclick="AbrirAlertaBomba()">Utilizar maquina</button>
+        </div>
+
+        <dialog id="alerta">            
+            <p>Olá, alerta da máquina</p>
+            <button>Enviar</button> 
+        </dialog>
+       
     </div>
 
-    <dialog id="alerta">            
-        <p>Olá, alerta da máquina</p>
-        <button id="botaoAlerta">Enviar</button> 
-    </dialog>
-
-</body>
-
+</body> 
 <script>
+    
     const alerta = document.getElementById('alerta');
-    const botaoAlerta = document.querySelector('#botaoAlerta');
+    const botaoAlerta = document.querySelector('#alerta button')
 
-    function AbrirAlerta(maquinaId) {
+    function AbrirAlertaTorno(){
         alerta.showModal();
+        
 
-        botaoAlerta.addEventListener('click', function() {
-            window.location.href = '/maquina/' + maquinaId;
-        });
+        botaoAlerta.addEventListener('click' , function() {
+            window.location.href = 'pagTorno.html';
+        })
+    }
+
+    function AbrirAlertaBomba(){
+        alerta.showModal();
+        
+
+        botaoAlerta.addEventListener('click' , function() {
+            window.location.href = 'pagMaq.html';
+        })
     }
 </script>
-</html>
+
+

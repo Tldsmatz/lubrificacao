@@ -1,28 +1,18 @@
 <?php
-namespace App\Http\Controllers;
 
-use App\Models\Oleo;
-use Illuminate\Http\Request;
+namespace App\Models;
 
-class OleoController extends Controller
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Oleo extends Model
 {
-    // Lista todos os óleos (caso precise de uma interface para gestão de óleos)
-    public function index()
-    {
-        $oleos = Oleo::all();
-        return view('oleos.index', compact('oleos'));
-    }
+    use HasFactory;
 
-    // Adiciona um novo óleo (opcional, se necessário)
-    public function store(Request $request)
-    {
-        $validatedData = $request->validate([
-            'nome' => 'required|string|max:255',
-            'tipo' => 'required|string|max:255',
-        ]);
-
-        Oleo::create($validatedData);
-
-        return redirect()->route('oleos.index')->with('success', 'Óleo adicionado com sucesso!');
-    }
+    protected $fillable = [
+        'maquina_id',
+        'sistema_lubrificacao',
+        'sistema_refrigeracao',
+        'sistema_pneumatico',
+    ];
 }
